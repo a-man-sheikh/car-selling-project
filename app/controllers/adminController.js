@@ -18,4 +18,19 @@ const addCarDetails = async (req,res)=>{
 
 }
 
-module.exports = {addCarDetails};
+const getCarAllDetails = async(req,res)=>{
+    try {
+        const car = await Car.find();
+        if(!car){
+            res.status(404).json({message:"Not Found",success:false})
+        }
+        res.status(200).json({message:"car details has been fetched",data:car,success:true})
+    } catch (error) {
+
+        console.error(error)
+        res.status(500).json("Server Error !!")
+        
+    }
+}
+
+module.exports = {addCarDetails,getCarAllDetails};
