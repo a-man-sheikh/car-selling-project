@@ -1,9 +1,10 @@
-// Role.js (basic idea)
 const mongoose = require("mongoose");
-
-const roleSchema = new mongoose.Schema({
-  name: String,
-  permissions: [String] 
-});
+const roleSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, unique: true },
+    permissions: [String],
+  },
+  { timestamps: true }
+);
 
 module.exports = mongoose.model("Role", roleSchema);
